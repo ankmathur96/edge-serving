@@ -88,6 +88,7 @@ dependencies:
   - pyzmq=17.1.2=py35h1de35cc_0
   - readline=7.0=h1de35cc_5
   - requests=2.19.1=py35_0
+  - scipy=1.1.0=py35h28f7352_1
   - send2trash=1.5.0=py35_0
   - service_identity=17.0.0=py35h28b3542_0
   - setuptools=40.2.0=py35_0
