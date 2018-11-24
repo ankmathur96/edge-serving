@@ -1,5 +1,5 @@
 export IMAGE_FAMILY="tf-latest-gpu"
 export ZONE="us-west1-b"
 export INSTANCE_NAME="tf-gpu"
-export PROJECT="neural-style-transfer"
+export PROJECT="edge-serving"
 export INSTANCE_SPEC="type=nvidia-tesla-k80,count=1"
