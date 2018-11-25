@@ -27,6 +27,7 @@ BATCHNORM_MOVING_AVERAGE_DECAY = 0.9997
 
 # The decay to use for the moving average.
 MOVING_AVERAGE_DECAY = 0.9999
+MODEL_VERSION = 1
 
 def inception_v3(inputs, sess, dropout_keep_prob=0.8, num_classes=1000,is_training=True,restore_logits=True,scope=''):
   """Latest Inception from http://arxiv.org/abs/1512.00567.
@@ -301,7 +302,7 @@ def inception_v3(inputs, sess, dropout_keep_prob=0.8, num_classes=1000,is_traini
           # 1000
           end_points['logits'] = logits
           end_points['predictions'] = tf.nn.softmax(logits, name='predictions')
-      builder = tf.saved_model.builder.SavedModelBuilder('partial_inception_v1/')
+      builder = tf.saved_model.builder.SavedModelBuilder('partial_inception_v1/' + str(MODEL_VERSION) + '/')
       # Build the signature_def_map.
       # serve the entire model.
       tensor_info_inputs = tf.saved_model.utils.build_tensor_info(inputs)
