@@ -34,8 +34,8 @@ import grpc
 import numpy
 import tensorflow as tf
 
-from tensorflow_serving.apis import predict_pb2
-from tensorflow_serving.apis import prediction_service_pb2_grpc
+import predict_pb2
+import prediction_service_pb2_grpc
 
 
 tf.app.flags.DEFINE_integer('concurrency', 1,
@@ -142,14 +142,14 @@ def do_inference(hostport, work_dir, concurrency, num_tests):
     request = predict_pb2.PredictRequest()
     request.model_spec.name = 'partial_inception_v1'
     request.model_spec.signature_name = 'predict_images'
-    images = tf.random_uniform((1, 299,299,3), 0, 255)
-    image, label = test_data_set.next_batch(1)
-    request.inputs['images'].CopyFrom(
-        tf.contrib.util.make_tensor_proto(image[0], shape=[1, 299, 299, 3]))
+    with tf.Session() as sess:
+        image = sess.run([tf.random_uniform((1,299,299,3), 0, 255)])[0]
+        print(image.shape)
+    request.inputs['images'].CopyFrom(tf.contrib.util.make_tensor_proto(image, shape=[1, 299, 299, 3]))
     result_counter.throttle()
     result_future = stub.Predict.future(request, 5.0)  # 5 seconds
     result_future.add_done_callback(
-        _create_rpc_callback(label[0], result_counter))
+        _create_rpc_callback('1', result_counter))
   return result_counter.get_error_rate()
 
 
