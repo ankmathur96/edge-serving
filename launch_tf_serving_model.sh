@@ -1,1 +1,1 @@
-docker run --runtime=nvidia -p 8501:8501 --mount type=bind,source=/home/ankitmathur/serving/tensorflow_serving/servables/tensorflow/testdata/saved_model_half_plus_two_gpu,target=/models/half_plus_two -e MODEL_NAME=half_plus_two -t tensorflow/serving:latest-gpu &
+docker run --runtime=nvidia -p 8501:8501 --mount type=bind,source=/home/ankitmathur/edge-serving/partial_inception_v1,target=/models/partial_inception_v1 -e MODEL_NAME=partial_inception_v1 -t tensorflow/serving:latest-gpu &
