@@ -305,7 +305,7 @@ def inception_v3(inputs, sess, dropout_keep_prob=0.8, num_classes=1000,is_traini
       builder = tf.saved_model.builder.SavedModelBuilder('partial_inception_v1/' + str(MODEL_VERSION) + '/')
       # Build the signature_def_map.
       # serve the entire model.
-      tensor_info_inputs = tf.saved_model.utils.build_tensor_info(inputs)
+      tensor_info_inputs = tf.saved_model.utils.build_tensor_info(end_points['pool2'])
       tensor_info_outputs = tf.saved_model.utils.build_tensor_info(end_points['predictions'])
 
       prediction_signature = (

@@ -65,7 +65,7 @@ with tf.Session() as sess:
 	    	      print(pool_outs.shape)
 	    	      print(type(pool_outs))
 # previous part of the model runs here:
-# payload = json.dumps({'instances' : im.tolist()})
-# r = requests.post('http://104.196.229.77:8501/v1/models/partial_inception_v1:predict', data=payload)
-# print(r.text)
+payload = json.dumps({'instances' : im.tolist()})
+r = requests.post('http://104.196.229.77:8501/v1/models/partial_inception_v1:predict', data=payload)
+print(r.text)
 
